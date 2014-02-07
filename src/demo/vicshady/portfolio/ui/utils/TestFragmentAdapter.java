@@ -13,16 +13,16 @@ public class TestFragmentAdapter extends FragmentPagerAdapter  {
         R.drawable.update_tour_phone3
     };
     protected static final String[] UCONTENT = new String[] { 
-    	"upper_text_1",
-        "upper_text_2",
-        "upper_text_3",
-        "upper_text_4"
+    	"Header_Title_1",
+        "Header_Title_2",
+        "Header_Title_3",
+        "Header_Title_4"
     };
     protected static final String[] LCONTENT = new String[] { 
-    	"R.string.lower_text_1",
-        "R.string.lower_text_2",
-        "R.string.lower_text_3",
-        "R.string.lower_text_4"
+    	"Detail111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+        "Detail222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222",
+        "Detail3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333",
+        "Detail4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444"
     };
     private int mCount = CONTENT.length;
 

@@ -18,10 +18,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dip"
-        app:fillColor="#880000FF"
-        app:pageColor="#FF888888"
-        app:radius="5dp"
-        app:strokeColor="#FF000000"
+        app:fillColor="#FF888888"
+        app:pageColor="#FFFFFFFF"
+        app:radius="3dp"
+        app:strokeColor="#FF888888"
         app:strokeWidth="1dp"
          />
     <RelativeLayout 

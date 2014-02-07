@@ -2,18 +2,16 @@ package demo.vicshady.portfolio.ui.utils;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 public final class TestFragment extends Fragment {
     private static final String KEY_CONTENT = "TestFragment:Content";
@@ -22,7 +20,7 @@ public final class TestFragment extends Fragment {
         TestFragment fragment = new TestFragment();
         fragment.mContent = content;
         fragment.uContent = ucontent;
-        fragment.uContent = lcontent;
+        fragment.lContent = lcontent;
         return fragment;
     }
 
@@ -32,7 +30,6 @@ public final class TestFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if ((savedInstanceState != null) && savedInstanceState.containsKey(KEY_CONTENT)) {
             mContent = savedInstanceState.getInt(KEY_CONTENT);
         }
@@ -40,39 +37,35 @@ public final class TestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	TextView uppertext = new TextView(getActivity());
-    	//uppertext.setGravity(Gravity.CENTER);
+		TextView uppertext = new TextView(getActivity());
     	uppertext.setText(uContent);
-    	uppertext.setTextColor(Color.BLUE);
+    	uppertext.setTextColor(Color.GRAY);
     	uppertext.setTypeface(null, Typeface.ITALIC);
-    	uppertext.setTextSize(12 * getResources().getDisplayMetrics().density);
-    	uppertext.setPadding(20, 10, 20, 10);
-    	LinearLayout.LayoutParams upperTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f);
+    	uppertext.setTextSize(15 * getResources().getDisplayMetrics().density);
+    	uppertext.setPadding(20, 0, 20, 0);
+    	LinearLayout.LayoutParams upperTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         
     	ImageView img = new ImageView(getActivity());
         img.setImageResource(mContent);
         img.setScaleType(ScaleType.CENTER_CROP);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(20, 0, 20, 0);
         
         TextView lowertext = new TextView(getActivity());
-        //lowertext.setGravity(Gravity.CENTER);
         lowertext.setText(lContent);
-        lowertext.setTextColor(Color.BLUE);
+        lowertext.setTextColor(Color.GRAY);
         lowertext.setTypeface(null, Typeface.ITALIC);
-        lowertext.setTextSize(12 * getResources().getDisplayMetrics().density);
-        lowertext.setPadding(20, 10, 20, 10);
-        LinearLayout.LayoutParams lowerTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f);
-        
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.6f);
-        layoutParams.setMargins(20, 0, 20, 0);
+        lowertext.setTextSize(10 * getResources().getDisplayMetrics().density);
+        lowertext.setPadding(20, 0, 20, 0);
+        LinearLayout.LayoutParams lowerTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);        
 
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
-        //layout.setGravity(Gravity.CENTER);
         layout.setOrientation(1);
         layout.addView(uppertext,upperTextParams);
         layout.addView(img,layoutParams);
         layout.addView(lowertext,lowerTextParams);
-
+        
         return layout;
     }
 
