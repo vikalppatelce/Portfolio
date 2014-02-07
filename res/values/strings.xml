@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Portfolio</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lower_text_1">Lower 1</string>
+	<string name="lower_text_2">Lower 2</string>
+	<string name="lower_text_3">Lower 3</string>
+	<string name="lower_text_4">Lower 4</string>
+	<string name="upper_text_1">Upper 1</string>
+	<string name="upper_text_2">Upper 2</string>
+	<string name="upper_text_3">Upper 3</string>
+	<string name="upper_text_4">Upper 4</string>
+	
+</resources>
