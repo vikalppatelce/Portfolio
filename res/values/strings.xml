@@ -12,5 +12,15 @@
 	<string name="upper_text_2">Upper 2</string>
 	<string name="upper_text_3">Upper 3</string>
 	<string name="upper_text_4">Upper 4</string>
+	<string name="next">Next</string>
+	<string name="clear">Clear</string>
+	<string name="appearance">Appearance</string>
+	<string name="pfullscreentitle">Fullscreen</string>
+	<string  name="pfullscreensummary">Application appears in FullScreen Mode</string>
+	<string name="about">About</string>
+	<string name="about_summary">About Application</string>
+	<string name="title_changelog">Change log</string>
+    <string name="changelog_close">Close</string>
+	
 	
 </resources>
