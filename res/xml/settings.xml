@@ -10,6 +10,20 @@
             android:summary="@string/pfullscreentitle"
             />
     </PreferenceCategory>
+       <PreferenceCategory android:title="@string/email">
+       <EditTextPreference
+           android:key="prefUser"
+           android:summary="@string/email_username_summary"
+           android:title="@string/email_username" />
+       <EditTextPreference
+           android:key="prefPass"
+           android:summary="@string/email_pass_summary"
+           android:title="@string/email_pass" />
+       <EditTextPreference
+           android:key="prefSent"
+           android:summary="@string/email_sent_summary"
+           android:title="@string/email_sent_to" />
+   </PreferenceCategory>
     <PreferenceCategory android:title="@string/about">
        <Preference android:title="@string/about_summary" android:key="prefAbout"/>       
    </PreferenceCategory>

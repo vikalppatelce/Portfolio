@@ -4,6 +4,14 @@
     <string name="app_name">Portfolio</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <!-- Buttons -->
+    <string name="next">Next</string>
+	<string name="clear">Clear</string>
+	<string name="submit">Submit</string>
+	<string name="add_media">Add Picture</string>
+	
+    <!-- String -->
     <string name="lower_text_1">Lower 1</string>
 	<string name="lower_text_2">Lower 2</string>
 	<string name="lower_text_3">Lower 3</string>
@@ -12,8 +20,9 @@
 	<string name="upper_text_2">Upper 2</string>
 	<string name="upper_text_3">Upper 3</string>
 	<string name="upper_text_4">Upper 4</string>
-	<string name="next">Next</string>
-	<string name="clear">Clear</string>
+	
+	
+	
 	<string name="appearance">Appearance</string>
 	<string name="pfullscreentitle">Fullscreen</string>
 	<string  name="pfullscreensummary">Application appears in FullScreen Mode</string>
@@ -21,6 +30,17 @@
 	<string name="about_summary">About Application</string>
 	<string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
-	
-	
+    <string name="email">Email</string>
+    <string name="email_username_summary">Add email username</string>
+    <string name="email_username">Username</string>
+    <string name="email_pass_summary">Add email password</string>
+    <string name="email_pass">Password</string>
+    <string name="email_sent_to">Email sent to</string>
+    <string name="email_sent_summary">Sent To:</string>
+    
+    <string name="h_name">Enter Name</string>
+    <string name="h_address">Enter Address</string>
+    <string name="h_contactno">Enter Contact No</string>
+    
+    
 </resources>

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -59,7 +60,9 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
+		updatePreference(key);
 	}
+	
 	
 	public void copyDatabase()
 	{
@@ -86,5 +89,28 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
         	Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }
 
+	}
+
+	
+	private void updatePreference(String key) {
+		if (key.equals("prefUser")) {
+			Preference preference = findPreference(key);
+			if (preference instanceof EditTextPreference) {
+				EditTextPreference userPreference = (EditTextPreference) preference;
+				if (userPreference.getEditText().length() > 0) {
+					userPreference.setSummary(userPreference.getEditText().getText().toString());
+				} 
+			}
+		}
+		
+		if (key.equals("prefSent")) {
+			Preference preference = findPreference(key);
+			if (preference instanceof EditTextPreference) {
+				EditTextPreference sentPreference = (EditTextPreference) preference;
+				if (sentPreference.getEditText().length() > 0) {
+					sentPreference.setSummary(sentPreference.getEditText().getText().toString());
+				} 
+			}
+		}
 	}
 }
