@@ -1,3 +1,16 @@
+/* HISTORY
+ * CATEGORY 		:- UIX | HOME SCREEN
+ * DEVELOPER		:- VIKALP PATEL
+ * AIM      		:- SENT MAIL & UPLOAD DATA TO SERVER
+ * DESCRIPTION 		:- HOME SCREEN | MAIN
+ * 
+ * S - START E- END  C- COMMENTED  U -EDITED A -ADDED
+ * --------------------------------------------------------------------------------------------------------------------
+ * INDEX       DEVELOPER		DATE			FUNCTION		DESCRIPTION
+ * --------------------------------------------------------------------------------------------------------------------
+ * 10001       VIKALP PATEL    10/02/2014       				
+ * --------------------------------------------------------------------------------------------------------------------
+ */
 package demo.vicshady.portfolio.ui;
 
 import java.io.File;

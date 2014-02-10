@@ -1,3 +1,17 @@
+/* HISTORY
+ * CATEGORY 		:- PREFERENCES
+ * DEVELOPER		:- VIKALP PATEL
+ * AIM      		:- EXPENSES
+ * DESCRIPTION 		:- SETTINGS OF APPLICATION
+ * 
+ * S - START E- END  C- COMMENTED  U -EDITED A -ADDED
+ * --------------------------------------------------------------------------------------------------------------------
+ * INDEX       DEVELOPER		DATE			FUNCTION		DESCRIPTION
+ * --------------------------------------------------------------------------------------------------------------------
+ * 10001       VIKALP PATEL    10/02/2014       				FIXED PREFERENCE ON CHANGE LISTENER
+ * --------------------------------------------------------------------------------------------------------------------
+ */
+
 package demo.vicshady.portfolio.ui;
 
 import java.io.File;
@@ -19,7 +33,8 @@ import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.ui.utils.ChangeLogDialog;
 
-public class PrefsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener {
+public class PrefsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener 
+{
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -55,15 +70,27 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 			});
 		}
 	}
-
+	
+	// SA 10001
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// Set up a listener whenever a key changes
+		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// Unregister the listener whenever a key changes
+		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	}
+	// EA 10001
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
 		updatePreference(key);
 	}
-	
-	
 	public void copyDatabase()
 	{
 		try {
@@ -103,12 +130,22 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 			}
 		}
 		
+		if (key.equals("prefPass")) {
+			Preference preference = findPreference(key);
+			if (preference instanceof EditTextPreference) {
+				EditTextPreference passPreference = (EditTextPreference) preference;
+				if (passPreference.getEditText().length() > 0) {
+					passPreference.setSummary("Will keep it safe");
+				} 
+			}
+		}
+		
 		if (key.equals("prefSent")) {
 			Preference preference = findPreference(key);
 			if (preference instanceof EditTextPreference) {
 				EditTextPreference sentPreference = (EditTextPreference) preference;
 				if (sentPreference.getEditText().length() > 0) {
-					sentPreference.setSummary(sentPreference.getEditText().getText().toString());
+					sentPreference.setSummary("Mail will sent to:"+sentPreference.getEditText().getText().toString());
 				} 
 			}
 		}
