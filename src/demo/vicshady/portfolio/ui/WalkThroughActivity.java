@@ -37,6 +37,7 @@ public class WalkThroughActivity extends BaseSampleActivity {
 			mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
 			mIndicator.setViewPager(mPager);
 			Portfolio.getPreferences().setFirstTime(false);
+			Portfolio.getApplication().createDatabase();
 		}
 		else
 		{

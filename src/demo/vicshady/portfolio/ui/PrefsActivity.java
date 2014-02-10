@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -98,8 +100,8 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
             File data = Environment.getDataDirectory();
 
             if (sd.canWrite()) {
-                String currentDBPath = "/data/data/" + getPackageName() + "/databases/PatientDB";
-                String backupDBPath = "PatientDB_Dev.db";
+                String currentDBPath = "/data/data/" + getPackageName() + "/databases/PortfolioDB";
+                String backupDBPath = "PortfolioDB_Dev.db";
                 File currentDB = new File(currentDBPath);
                 File backupDB = new File(sd, backupDBPath);
 
@@ -118,15 +120,35 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 
 	}
 
+	public static boolean isEmailValid(String nComingEmail) 
+	{
+	    boolean isValid = false;
+
+	    String mExpression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+	    CharSequence mInputEmail = nComingEmail;
+
+	    Pattern mPattern = Pattern.compile(mExpression, Pattern.CASE_INSENSITIVE);
+	    Matcher mMatcher = mPattern.matcher(mInputEmail);
+	    if (mMatcher.matches()) 
+	    {
+	        isValid = true;
+	    }
+	    return isValid;
+	}
 	
 	private void updatePreference(String key) {
 		if (key.equals("prefUser")) {
 			Preference preference = findPreference(key);
 			if (preference instanceof EditTextPreference) {
 				EditTextPreference userPreference = (EditTextPreference) preference;
-				if (userPreference.getEditText().length() > 0) {
+				if (userPreference.getEditText().length() > 0 && isEmailValid(userPreference.getEditText().getText().toString())) {
 					userPreference.setSummary(userPreference.getEditText().getText().toString());
 				} 
+				else
+				{
+					userPreference.setSummary(userPreference.getEditText().getText().toString());
+					Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
+				}
 			}
 		}
 		
@@ -144,9 +166,14 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 			Preference preference = findPreference(key);
 			if (preference instanceof EditTextPreference) {
 				EditTextPreference sentPreference = (EditTextPreference) preference;
-				if (sentPreference.getEditText().length() > 0) {
+				if (sentPreference.getEditText().length() > 0 && isEmailValid(sentPreference.getEditText().getText().toString())) {
 					sentPreference.setSummary("Mail will sent to:"+sentPreference.getEditText().getText().toString());
 				} 
+				else
+				{
+					sentPreference.setSummary(sentPreference.getEditText().getText().toString());
+					Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
+				}
 			}
 		}
 	}

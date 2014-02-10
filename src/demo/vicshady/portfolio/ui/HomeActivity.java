@@ -80,47 +80,10 @@ public class HomeActivity extends SherlockFragmentActivity{
 		contact  = (EditText)findViewById(R.id.contact_no);
 		submit = (Button)findViewById(R.id.next_button);
 		pref = PreferenceManager.getDefaultSharedPreferences(Portfolio.getApplication());		
-		address.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				greenSubmit(count);
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
-		
-		contact.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				greenSubmit(count);
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
-		
-		name.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				greenSubmit(count);
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
+
+		address.addTextChangedListener(textWatcher);
+		contact.addTextChangedListener(textWatcher);
+		name.addTextChangedListener(textWatcher);
 	}
 
 	public void onImportPicture(View v)
@@ -137,6 +100,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 		_address=address.getText().toString();
 		_contact=contact.getText().toString();
 		new MailTask().execute();
+		validate(_name,_contact,_address);
 	}
 	
 	public class MailTask extends AsyncTask<String,Void,String>{
@@ -181,6 +145,35 @@ public class HomeActivity extends SherlockFragmentActivity{
         protected void onPreExecute() {}
 	}
 	
+	public boolean validate(String name, String contact, String address)
+	{
+		if(name.length() > 0 && contact.length() > 0 && address.length() >0)
+			return true;
+		
+		if(name.length() <= 0)
+			return false;
+		
+		if(contact.length() <= 0)
+			return false;
+		
+		if(address.length() <= 0)
+			return false;
+		
+		return false;
+	}
+	
+	TextWatcher textWatcher = new TextWatcher() {
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			greenSubmit(count);
+		}
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
+		@Override
+		public void afterTextChanged(Editable s) {
+		}
+	};
 	public void greenSubmit(int count)
 	{
 		if(count > 0)

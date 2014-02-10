@@ -17,10 +17,12 @@ package demo.vicshady.portfolio.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import demo.vicshady.portfolio.service.DataController;
+import demo.vicshady.portfolio.sql.DBConstant;
 import demo.vicshady.portfolio.sql.Preferences;
 
 public class Portfolio extends Application {
@@ -58,6 +60,22 @@ public class Portfolio extends Application {
 	public static SharedPreferences getSharedPreferences()
 	{
 		return sharedPreferences;
+	}
+	
+	public void createDatabase()
+	{
+		Cursor c = getContentResolver().query(DBConstant.Data_Columns.CONTENT_URI, null, null, null, null);
+		if( c!= null)
+		{
+			c.close();
+			c = null;
+		}
+		c = getContentResolver().query(DBConstant.Data_Details_Columns.CONTENT_URI, null, null, null, null);
+		if( c!= null)
+		{
+			c.close();
+			c = null;
+		}
 	}
 	
 	public boolean isNetworkAvailable() {
