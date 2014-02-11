@@ -8,7 +8,7 @@
  * --------------------------------------------------------------------------------------------------------------------
  * INDEX       DEVELOPER		DATE			FUNCTION		DESCRIPTION
  * --------------------------------------------------------------------------------------------------------------------
- * 10001       VIKALP PATEL    10/02/2014       				
+ * 10001       VIKALP PATEL    10/02/2014       BUG             FIXED FOR THEME ISSUE [MOVED TO MANIFEST]	RCA: THEME [2.3+]				
  * --------------------------------------------------------------------------------------------------------------------
  */
 package demo.vicshady.portfolio.ui;
@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -51,6 +52,7 @@ import com.actionbarsherlock.view.MenuItem;
 import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.app.AppConstants;
 import demo.vicshady.portfolio.app.Portfolio;
+import demo.vicshady.portfolio.sql.DBConstant;
 import demo.vicshady.portfolio.utils.ImageCompression;
 import demo.vicshady.portfolio.utils.Mail;
 
@@ -73,6 +75,10 @@ public class HomeActivity extends SherlockFragmentActivity{
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		//SA 10001
+		//setTheme(R.style.Sherlock___Theme_DarkActionBar);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		//EA 10001
 		setContentView(R.layout.home);
 		img = (ImageView)findViewById(R.id.picviewer);
 		address = (EditText)findViewById(R.id.address);
@@ -100,7 +106,8 @@ public class HomeActivity extends SherlockFragmentActivity{
 		_address=address.getText().toString();
 		_contact=contact.getText().toString();
 		new MailTask().execute();
-		validate(_name,_contact,_address);
+		if(validate(_name,_contact,_address))
+			save(_name,_address,_contact);
 	}
 	
 	public class MailTask extends AsyncTask<String,Void,String>{
@@ -145,19 +152,38 @@ public class HomeActivity extends SherlockFragmentActivity{
         protected void onPreExecute() {}
 	}
 	
+	public void save(String name,String contact,String address)
+	{
+		Bundle b = new Bundle();
+		b.putString("message", "Saving");
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(DBConstant.Data_Columns.COLUMN_NAME, name);
+		contentValues.put(DBConstant.Data_Columns.COLUMN_CONTACT, contact);
+		contentValues.put(DBConstant.Data_Columns.COLUMN_ADDRESS, address);
+		contentValues.put(DBConstant.Data_Columns.COLUMN_SYNC_STATUS, "0");
+		getContentResolver().insert(DBConstant.Data_Columns.CONTENT_URI,contentValues);
+	}
 	public boolean validate(String name, String contact, String address)
 	{
 		if(name.length() > 0 && contact.length() > 0 && address.length() >0)
 			return true;
 		
 		if(name.length() <= 0)
+		{
+			this.name.setError("Please enter name");
 			return false;
-		
+		}
 		if(contact.length() <= 0)
+		{
+			this.contact.setError("Please enter contact");
 			return false;
+		}
 		
 		if(address.length() <= 0)
+		{
+			this.address.setError("Please enter address");
 			return false;
+		}
 		
 		return false;
 	}
