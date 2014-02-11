@@ -46,7 +46,8 @@ public class GMailSender extends javax.mail.Authenticator {
         session = Session.getDefaultInstance(props, this);   
     }   
 
-    protected PasswordAuthentication getPasswordAuthentication() {   
+    @Override
+	protected PasswordAuthentication getPasswordAuthentication() {   
         return new PasswordAuthentication(user, password);   
     }   
 
@@ -86,22 +87,26 @@ public class GMailSender extends javax.mail.Authenticator {
             this.type = type;   
         }   
 
-        public String getContentType() {   
+        @Override
+		public String getContentType() {   
             if (type == null)   
                 return "application/octet-stream";   
             else  
                 return type;   
         }   
 
-        public InputStream getInputStream() throws IOException {   
+        @Override
+		public InputStream getInputStream() throws IOException {   
             return new ByteArrayInputStream(data);   
         }   
 
-        public String getName() {   
+        @Override
+		public String getName() {   
             return "ByteArrayDataSource";   
         }   
 
-        public OutputStream getOutputStream() throws IOException {   
+        @Override
+		public OutputStream getOutputStream() throws IOException {   
             throw new IOException("Not Supported");   
         }   
     }   

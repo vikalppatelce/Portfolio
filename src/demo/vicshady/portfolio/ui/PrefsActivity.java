@@ -38,6 +38,7 @@ import demo.vicshady.portfolio.ui.utils.ChangeLogDialog;
 public class PrefsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener 
 {
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

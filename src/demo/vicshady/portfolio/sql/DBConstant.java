@@ -30,6 +30,7 @@ public class DBConstant {
 		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/dataDetails";
 
 		public static final String COLUMN_ID 				= "_id";
+		public static final String COLUMN_NAME 				= "name";
 		public static final String COLUMN_DATA_ID 			= "data_id";
 		public static final String COLUMN_URL 				= "url";
 		public static final String COLUMN_SYNC_STATUS 		= "status";

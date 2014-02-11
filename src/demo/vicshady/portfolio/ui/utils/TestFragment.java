@@ -43,12 +43,12 @@ public final class TestFragment extends Fragment {
     	uppertext.setTypeface(null, Typeface.ITALIC);
     	uppertext.setTextSize(15 * getResources().getDisplayMetrics().density);
     	uppertext.setPadding(20, 0, 20, 0);
-    	LinearLayout.LayoutParams upperTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    	LinearLayout.LayoutParams upperTextParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
         
     	ImageView img = new ImageView(getActivity());
         img.setImageResource(mContent);
         img.setScaleType(ScaleType.CENTER_CROP);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(20, 0, 20, 0);
         
         TextView lowertext = new TextView(getActivity());
@@ -57,7 +57,7 @@ public final class TestFragment extends Fragment {
         lowertext.setTypeface(null, Typeface.ITALIC);
         lowertext.setTextSize(10 * getResources().getDisplayMetrics().density);
         lowertext.setPadding(20, 0, 20, 0);
-        LinearLayout.LayoutParams lowerTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);        
+        LinearLayout.LayoutParams lowerTextParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);        
 
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));

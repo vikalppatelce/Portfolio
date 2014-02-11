@@ -24,6 +24,7 @@
                 android:padding="2dp"
                 android:hint="@string/h_name"
                 android:layout_margin="10dp"
+                android:background="@drawable/container_dropshadow"
                 />
             
             <EditText
@@ -33,6 +34,7 @@
                 android:padding="2dp"
                 android:hint="@string/h_contactno"
                 android:layout_margin="10dp"
+                android:background="@drawable/container_dropshadow"
                 />
             
             <EditText
@@ -43,6 +45,7 @@
                 android:minLines="2"
                 android:hint="@string/h_address"
                 android:layout_margin="10dp"
+                android:background="@drawable/container_dropshadow"
                 />
 
             <LinearLayout

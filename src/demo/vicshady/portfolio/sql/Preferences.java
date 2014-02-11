@@ -16,6 +16,7 @@ package demo.vicshady.portfolio.sql;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import demo.vicshady.portfolio.dto.UserLoginDTO;
 
 public class Preferences {
 

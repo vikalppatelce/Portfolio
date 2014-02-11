@@ -36,6 +36,7 @@ public class PortfolioDB extends ContentProvider {
 			super(context, DBConstant.DB_NAME, null, DATABASE_VERSION);
 		}
 		
+		@Override
 		public void onCreate(SQLiteDatabase db) {
 			//location table
 			StringBuilder strBuilder = new StringBuilder();
@@ -56,7 +57,8 @@ public class PortfolioDB extends ContentProvider {
 			strBuilder.append("CREATE TABLE ");
 			strBuilder.append(DBConstant.TABLE_DATA_DETAILS);
 			strBuilder.append('(');
-			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_ID +" INTEGER(20) PRIMARY KEY NOT NULL DEFAULT (STRFTIME('%s',CURRENT_TIMESTAMP))," );//EU10001
+			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_ID +" INTEGER(20) PRIMARY KEY NOT NULL DEFAULT (STRFTIME('%s',CURRENT_TIMESTAMP))," );
+			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_NAME+" TEXT UNIQUE, " );
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_DATA_ID+" TEXT UNIQUE, " );
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_URL +" TEXT UNIQUE, " );
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS +" NUMBER" );
@@ -222,6 +224,7 @@ static {
 		
 		dataDetailProjectionMap = new HashMap<String, String>();
 		dataDetailProjectionMap.put(DBConstant.Data_Details_Columns.COLUMN_ID, DBConstant.Data_Details_Columns.COLUMN_ID);
+		dataDetailProjectionMap.put(DBConstant.Data_Details_Columns.COLUMN_NAME, DBConstant.Data_Details_Columns.COLUMN_NAME);
 		dataDetailProjectionMap.put(DBConstant.Data_Details_Columns.COLUMN_DATA_ID, DBConstant.Data_Details_Columns.COLUMN_DATA_ID);
 		dataDetailProjectionMap.put(DBConstant.Data_Details_Columns.COLUMN_URL, DBConstant.Data_Details_Columns.COLUMN_URL);
 		dataDetailProjectionMap.put(DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS, DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS);

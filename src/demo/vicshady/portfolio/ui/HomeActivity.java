@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.ContentValues;
@@ -61,7 +62,12 @@ public class HomeActivity extends SherlockFragmentActivity{
 	public static final int IMPORT_PICTURE = 1;
 	
 	Uri outputFileUri,currentFileUri;
+	Cursor dataCursor;
+	
 	String compressedPath,_name,_contact,_address;
+	String _id=null;
+	String username,password,sentto;
+	ArrayList<String> imagePaths;
 	
 	EditText address,name,contact;
 	ImageView img;
@@ -72,6 +78,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 	//TextWatcher addressWatcher;
 	OnEditorActionListener addressWatcher; 
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -90,6 +97,8 @@ public class HomeActivity extends SherlockFragmentActivity{
 		address.addTextChangedListener(textWatcher);
 		contact.addTextChangedListener(textWatcher);
 		name.addTextChangedListener(textWatcher);
+		
+		imagePaths =  new ArrayList<String>();
 	}
 
 	public void onImportPicture(View v)
@@ -100,12 +109,22 @@ public class HomeActivity extends SherlockFragmentActivity{
 	
 	public void onSubmit(View v)
 	{
-		submit.setText("Sending...");
-		submit.setEnabled(false);
 		_name=name.getText().toString();
 		_address=address.getText().toString();
 		_contact=contact.getText().toString();
-		new MailTask().execute();
+		
+		username=pref.getString("prefUser", null);
+		password=pref.getString("prefPass", null);
+		sentto=pref.getString("prefSent", null);
+		
+		if (validateMail()) {
+			submit.setText("Sending...");
+			submit.setEnabled(false);
+			new MailTask().execute();
+		} else {
+			Toast.makeText(getApplicationContext(),"PLease enter Gmail Username", Toast.LENGTH_SHORT).show();
+		}
+		
 		if(validate(_name,_contact,_address))
 			save(_name,_address,_contact);
 	}
@@ -117,10 +136,6 @@ public class HomeActivity extends SherlockFragmentActivity{
 			/*
 			 * MAIL SENDING
 			 */
-			String username,password,sentto;
-			username=pref.getString("prefUser", null);
-			password=pref.getString("prefPass", null);
-			sentto=pref.getString("prefSent", null);
 			 Mail m = new Mail(username, password); 
 		      String[] toArr = {"vikalppatelce@yahoo.com", "vikalppatel043@gmail.com",sentto}; 
 		      m.setTo(toArr);
@@ -143,25 +158,65 @@ public class HomeActivity extends SherlockFragmentActivity{
 		      } 
 			return "MailSent";
 		}
+		@Override
 		protected void onPostExecute(String result) {
 			Toast.makeText(HomeActivity.this, "Mail Sent", Toast.LENGTH_SHORT).show();
 			submit.setEnabled(true);
 			submit.setText("Submit");
         }
 
-        protected void onPreExecute() {}
+        @Override
+		protected void onPreExecute() {}
 	}
 	
 	public void save(String name,String contact,String address)
 	{
 		Bundle b = new Bundle();
 		b.putString("message", "Saving");
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(DBConstant.Data_Columns.COLUMN_NAME, name);
-		contentValues.put(DBConstant.Data_Columns.COLUMN_CONTACT, contact);
-		contentValues.put(DBConstant.Data_Columns.COLUMN_ADDRESS, address);
-		contentValues.put(DBConstant.Data_Columns.COLUMN_SYNC_STATUS, "0");
-		getContentResolver().insert(DBConstant.Data_Columns.CONTENT_URI,contentValues);
+		ContentValues dataValues = new ContentValues();
+		dataValues.put(DBConstant.Data_Columns.COLUMN_NAME, name);
+		dataValues.put(DBConstant.Data_Columns.COLUMN_CONTACT, contact);
+		dataValues.put(DBConstant.Data_Columns.COLUMN_ADDRESS, address);
+		dataValues.put(DBConstant.Data_Columns.COLUMN_ATTACHMENT, imagePaths.size()>0 ? "1" : "0");
+		dataValues.put(DBConstant.Data_Columns.COLUMN_SYNC_STATUS, "0");
+		getContentResolver().insert(DBConstant.Data_Columns.CONTENT_URI,dataValues);
+		
+		if(imagePaths.size() > 0)
+		{
+			dataCursor = getContentResolver().query(DBConstant.Data_Columns.CONTENT_URI, null, null, null, null);
+			if (dataCursor != null && dataCursor.getCount() > 0) 
+			{
+				dataCursor.moveToLast();
+				_id = dataCursor.getString(dataCursor.getColumnIndex(DBConstant.Data_Columns.COLUMN_ID));
+				
+				for (int i = 0; i < imagePaths.size(); i++) {
+					String url = imagePaths.get(i);
+					String file_name = url.substring(url.lastIndexOf("/") + 1);
+					ContentValues dataDetail = new ContentValues();
+					dataDetail.put(DBConstant.Data_Details_Columns.COLUMN_NAME, file_name);
+					dataDetail.put(DBConstant.Data_Details_Columns.COLUMN_URL, url);
+					dataDetail.put(DBConstant.Data_Details_Columns.COLUMN_DATA_ID, _id);
+					dataDetail.put(DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS, 0);
+					getContentResolver().insert(DBConstant.Data_Details_Columns.CONTENT_URI, dataDetail);
+				}
+			}
+		}
+
+	}
+	
+	public boolean validateMail()
+	{
+		if(username!=null && password!=null && sentto!=null)
+			return true;
+		
+		if(username==null)
+			return false;
+		if(password==null)
+			return false;
+		if(sentto == null)
+			return false;
+		
+		return false;
 	}
 	public boolean validate(String name, String contact, String address)
 	{
@@ -189,6 +244,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 	}
 	
 	TextWatcher textWatcher = new TextWatcher() {
+		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			greenSubmit(count);
 		}
@@ -263,6 +319,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 	    this.sendBroadcast(mediaScanIntent);
 	}
 	
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		Bitmap bm = null;
@@ -290,6 +347,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 				bm = BitmapFactory.decodeFile(picturePath,btmapOptions);
 				compressedPath = ImageCompression.compressImage(currentFileUri.getPath());
 				galleryAddPic();
+				imagePaths.add(compressedPath);
 				img.setImageBitmap(bm);
 			}
 		}

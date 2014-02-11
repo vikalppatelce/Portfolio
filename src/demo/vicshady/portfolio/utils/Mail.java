@@ -9,6 +9,7 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.BodyPart;
+import javax.mail.Message.RecipientType;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -111,7 +112,7 @@ private String _body;
       for (int i = 0; i < _to.length; i++) { 
         addressTo[i] = new InternetAddress(_to[i]); 
       } 
-        msg.setRecipients(MimeMessage.RecipientType.TO, addressTo); 
+        msg.setRecipients(RecipientType.TO, addressTo); 
  
       msg.setSubject(_subject); 
       msg.setSentDate(new Date()); 

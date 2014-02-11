@@ -1,4 +1,4 @@
-package demo.vicshady.portfolio.sql;
+package demo.vicshady.portfolio.dto;
 
 public class UserLoginDTO {
 
