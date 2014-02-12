@@ -24,6 +24,7 @@ import android.preference.PreferenceManager;
 import demo.vicshady.portfolio.service.DataController;
 import demo.vicshady.portfolio.sql.DBConstant;
 import demo.vicshady.portfolio.sql.Preferences;
+import demo.vicshady.portfolio.stacktrace.ExceptionHandler;
 
 public class Portfolio extends Application {
 	
@@ -38,7 +39,8 @@ public class Portfolio extends Application {
 		portfolio = this;
 		dataController = new DataController();
 		preferences = new Preferences(this);
-		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this); 
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		ExceptionHandler.register(portfolio);
 	}
 	@Override
 	public void onTerminate() {

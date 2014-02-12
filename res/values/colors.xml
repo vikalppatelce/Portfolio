@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="borderLow">#585858</color>
+    <color name="borderHigh">#000000</color>
+    
+    <color name="gradientStart">#000000</color>
+    <color name="gradientEnd">#585858</color>
+</resources>

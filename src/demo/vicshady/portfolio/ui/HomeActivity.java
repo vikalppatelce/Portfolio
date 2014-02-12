@@ -54,6 +54,7 @@ import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.app.AppConstants;
 import demo.vicshady.portfolio.app.Portfolio;
 import demo.vicshady.portfolio.sql.DBConstant;
+import demo.vicshady.portfolio.ui.utils.CustomToast;
 import demo.vicshady.portfolio.utils.ImageCompression;
 import demo.vicshady.portfolio.utils.Mail;
 
@@ -122,7 +123,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 			submit.setEnabled(false);
 			new MailTask().execute();
 		} else {
-			Toast.makeText(getApplicationContext(),"PLease enter Gmail Username", Toast.LENGTH_SHORT).show();
+			CustomToast.showToastMessage(getApplicationContext(), "Enter Gmail Username");
 		}
 		
 		if(validate(_name,_contact,_address))
@@ -160,7 +161,8 @@ public class HomeActivity extends SherlockFragmentActivity{
 		}
 		@Override
 		protected void onPostExecute(String result) {
-			Toast.makeText(HomeActivity.this, "Mail Sent", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(HomeActivity.this, "Mail Sent", Toast.LENGTH_SHORT).show();
+			CustomToast.showToastMessage(HomeActivity.this, "Mail Sent");
 			submit.setEnabled(true);
 			submit.setText("Submit");
         }
