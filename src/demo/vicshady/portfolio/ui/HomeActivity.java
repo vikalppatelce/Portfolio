@@ -24,11 +24,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,7 +46,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -53,6 +55,7 @@ import com.actionbarsherlock.view.MenuItem;
 import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.app.AppConstants;
 import demo.vicshady.portfolio.app.Portfolio;
+import demo.vicshady.portfolio.service.UploadData;
 import demo.vicshady.portfolio.sql.DBConstant;
 import demo.vicshady.portfolio.ui.utils.CustomToast;
 import demo.vicshady.portfolio.utils.ImageCompression;
@@ -118,20 +121,28 @@ public class HomeActivity extends SherlockFragmentActivity{
 		password=pref.getString("prefPass", null);
 		sentto=pref.getString("prefSent", null);
 		
-		if (validateMail()) {
-			submit.setText("Sending...");
-			submit.setEnabled(false);
-			new MailTask().execute();
-		} else {
-			CustomToast.showToastMessage(getApplicationContext(), "Enter Gmail Username");
-		}
-		
 		if(validate(_name,_contact,_address))
 			save(_name,_address,_contact);
+
+		if (isNetworkAvailable()) {
+			if (validateMail()) {
+				submit.setText("Sending...");
+				submit.setEnabled(false);
+				new MailTask().execute();
+			} else {
+				CustomToast.showToastMessage(getApplicationContext(),"Please Check Gmail Username, Password & Sent To");
+			}
+
+			Intent i = new Intent(this, UploadData.class);
+			startService(i);
+		}
+		else
+		{
+			CustomToast.showToastMessage(getApplicationContext(), "Please check your internet connection");
+		}
 	}
 	
 	public class MailTask extends AsyncTask<String,Void,String>{
-
 		@Override
 		protected String doInBackground(String... params) {
 			/*
@@ -171,6 +182,12 @@ public class HomeActivity extends SherlockFragmentActivity{
 		protected void onPreExecute() {}
 	}
 	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+	}
 	public void save(String name,String contact,String address)
 	{
 		Bundle b = new Bundle();

@@ -33,7 +33,23 @@ public class RequestBuilder {
 		return stringBuffer;// ParentBuffer;
 	}
 	
-	public static JSONObject getServicesData(String imei, JSONObject jsonObject, JSONObject tables)
+	public static JSONObject getUploadData()
+	{
+		JSONObject stringBuffer = new JSONObject();
+		
+		try
+		{
+			stringBuffer.put("user_id", Portfolio.getPreferences().getUserLoginDTO().getSign_id());
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return stringBuffer;//ParentBuffer;
+	}
+	
+	
+	public static JSONObject getServicesData(String imei, JSONObject tables)
 	{
 		JSONObject stringBuffer = new JSONObject();
 		

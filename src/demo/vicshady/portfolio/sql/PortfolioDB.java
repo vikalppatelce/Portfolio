@@ -51,7 +51,7 @@ public class PortfolioDB extends ContentProvider {
 			strBuilder.append(DBConstant.Data_Columns.COLUMN_SYNC_STATUS +" NUMBER" );
 			strBuilder.append(')');
 			db.execSQL(strBuilder.toString());
-			Log.e("CREATE TABLE->",strBuilder.toString());
+			Log.i("TABLE",strBuilder.toString());
 			
 			strBuilder = new StringBuilder();
 			strBuilder.append("CREATE TABLE ");
@@ -64,7 +64,7 @@ public class PortfolioDB extends ContentProvider {
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS +" NUMBER" );
 			strBuilder.append(')');
 			db.execSQL(strBuilder.toString());
-			Log.e("CREATE TABLE->",strBuilder.toString());
+			Log.i("TABLE",strBuilder.toString());
 		}
 
 		@Override

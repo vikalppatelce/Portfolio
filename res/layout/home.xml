@@ -3,12 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-     >
-    <ScrollView
+<ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -24,7 +19,6 @@
                 android:padding="2dp"
                 android:hint="@string/h_name"
                 android:layout_margin="10dp"
-                android:background="@drawable/container_dropshadow"
                 />
             
             <EditText
@@ -34,7 +28,6 @@
                 android:padding="2dp"
                 android:hint="@string/h_contactno"
                 android:layout_margin="10dp"
-                android:background="@drawable/container_dropshadow"
                 />
             
             <EditText
@@ -42,15 +35,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:minLines="2"
+                android:minLines="4"
                 android:hint="@string/h_address"
                 android:layout_margin="10dp"
-                android:background="@drawable/container_dropshadow"
                 />
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="180dp"
                 android:orientation="horizontal"
                  >
             <Button
@@ -59,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="0.5"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:onClick="onImportPicture"
                 android:text="@string/add_media" />
 
@@ -121,5 +113,4 @@
             
         </LinearLayout>
     </RelativeLayout>
-    </LinearLayout>
 </LinearLayout>
