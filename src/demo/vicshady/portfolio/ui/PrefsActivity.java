@@ -9,6 +9,7 @@
  * INDEX       DEVELOPER		DATE			FUNCTION		DESCRIPTION
  * --------------------------------------------------------------------------------------------------------------------
  * 10001       VIKALP PATEL    10/02/2014       				FIXED PREFERENCE ON CHANGE LISTENER
+ * 10002       VIKALP PATEL    13/02/2014      PREFERENCES      INITIALIZING SUMMARY OF PREFERENCES
  * --------------------------------------------------------------------------------------------------------------------
  */
 
@@ -23,11 +24,16 @@ import java.util.regex.Pattern;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
@@ -44,6 +50,11 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 		super.onCreate(savedInstanceState);
 		PreferenceManager prefMgr = getPreferenceManager();
 		addPreferencesFromResource(R.xml.settings);
+		//SA 10002
+		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
+            initSummary(getPreferenceScreen().getPreference(i));
+        }//EA 10002
+		
 		Preference release = prefMgr.findPreference("prefRelease");
 		if(release!=null)
 		{
@@ -92,6 +103,7 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
+		updatePrefSummary(findPreference(key));
 		updatePreference(key);
 	}
 	public void copyDatabase()
@@ -120,7 +132,34 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
         }
 
 	}
-
+	//SA 10002
+	private void initSummary(Preference p) {
+        if (p instanceof PreferenceCategory) {
+            PreferenceCategory pCat = (PreferenceCategory) p;
+            for (int i = 0; i < pCat.getPreferenceCount(); i++) {
+                initSummary(pCat.getPreference(i));
+            }
+        } else {
+            updatePrefSummary(p);
+        }
+    }
+	
+	private void updatePrefSummary(Preference p) {
+        if (p instanceof EditTextPreference) {
+            EditTextPreference editTextPref = (EditTextPreference) p;
+            if(editTextPref.getKey().equalsIgnoreCase("prefPass"))
+            {
+            	p.setSummary("Will Keep it safe");
+            }
+            else
+            {
+            	Spannable summary = new SpannableString (editTextPref.getText().toString());
+				summary.setSpan( new ForegroundColorSpan( Color.RED ), 0, summary.length(), 0 );
+				p.setSummary(isEmailValid(editTextPref.getText().toString())? editTextPref.getText() : summary);
+            }
+        }
+	}
+	//EA 10002
 	public static boolean isEmailValid(String nComingEmail) 
 	{
 	    boolean isValid = false;
@@ -136,7 +175,6 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 	    }
 	    return isValid;
 	}
-	
 	private void updatePreference(String key) {
 		if (key.equals("prefUser")) {
 			Preference preference = findPreference(key);
@@ -147,7 +185,11 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 				} 
 				else
 				{
-					userPreference.setSummary(userPreference.getEditText().getText().toString());
+					//SA 10002
+					Spannable summary = new SpannableString (userPreference.getEditText().getText().toString());
+					summary.setSpan( new ForegroundColorSpan( Color.RED ), 0, summary.length(), 0 );
+					
+					userPreference.setSummary(summary);//EA 10002
 					Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
 				}
 			}
@@ -172,7 +214,11 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 				} 
 				else
 				{
-					sentPreference.setSummary(sentPreference.getEditText().getText().toString());
+					//SA 10002
+					Spannable summary = new SpannableString (sentPreference.getEditText().getText().toString());
+					summary.setSpan( new ForegroundColorSpan( Color.RED ), 0, summary.length(), 0 );
+					
+					sentPreference.setSummary(summary);//EA 10002
 					Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
 				}
 			}
