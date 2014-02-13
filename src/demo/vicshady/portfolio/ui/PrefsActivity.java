@@ -39,6 +39,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 import demo.vicshady.portfolio.R;
+import demo.vicshady.portfolio.ui.utils.AboutDialog;
 import demo.vicshady.portfolio.ui.utils.ChangeLogDialog;
 
 public class PrefsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener 
@@ -78,7 +79,24 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 				public boolean onPreferenceClick(Preference preference) {
 					// TODO Auto-generated method stub
 				//	showDialog(DEV);
-					copyDatabase();
+					copyDatabase(); AboutDialog aboutDialog = new AboutDialog(PrefsActivity.this);
+					aboutDialog.show();
+					return false;
+				}
+			});
+		}
+		
+		Preference about = prefMgr.findPreference("prefAbout");
+		if(about!=null)
+		{
+			about.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+				
+				@Override
+				public boolean onPreferenceClick(Preference preference) {
+					// TODO Auto-generated method stub
+				//	showDialog(DEV);
+					AboutDialog aboutDialog = new AboutDialog(PrefsActivity.this);
+					aboutDialog.show();
 					return false;
 				}
 			});

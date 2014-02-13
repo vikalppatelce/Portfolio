@@ -792,5 +792,6 @@ int styleable ViewPagerIndicator_vpiLinePageIndicatorStyle 2
 int styleable ViewPagerIndicator_vpiTabPageIndicatorStyle 4
 int styleable ViewPagerIndicator_vpiTitlePageIndicatorStyle 3
 int styleable ViewPagerIndicator_vpiUnderlinePageIndicatorStyle 5
-int xml changelog 0x7f040000
-int xml settings 0x7f040001
+int xml aboutlog 0x7f040000
+int xml changelog 0x7f040001
+int xml settings 0x7f040002

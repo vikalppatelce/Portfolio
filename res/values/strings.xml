@@ -37,6 +37,7 @@
     <string name="email_pass">Password</string>
     <string name="email_sent_to">Email sent to</string>
     <string name="email_sent_summary">Sent To:</string>
+    <string name="about_summary">About Portfolio</string>
     
     <string name="h_name">Enter Name</string>
     <string name="h_address">Enter Address</string>
