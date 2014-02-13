@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,19 +15,24 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.app.AppConstants;
 import demo.vicshady.portfolio.dto.DataDTO;
 import demo.vicshady.portfolio.dto.DataDetailsDTO;
 import demo.vicshady.portfolio.dto.MediaUploadResponse;
 import demo.vicshady.portfolio.dto.UploadDataResponseDTO;
 import demo.vicshady.portfolio.sql.DBConstant;
+import demo.vicshady.portfolio.ui.HomeActivity;
 
 public class UploadData extends Service {
 
 	public static final String BROADCAST_ACTION = "demo.vicshady.portfolio.displayevent";
     Intent intent;
+    NotificationManager mNotifyManager;
+    NotificationCompat.Builder mBuilder;
     private static final String TAG = "BroadcastService";
     
 	@Override
@@ -40,6 +47,7 @@ public class UploadData extends Service {
 		super.onCreate();
 		intent = new Intent(BROADCAST_ACTION);	
 		onStartService();
+		startNotification();
 	}
 
 	@Override
@@ -67,6 +75,22 @@ public class UploadData extends Service {
     ArrayList<DataDTO> dataDTOs;
 	ArrayList<DataDetailsDTO> dataDetailsDTOs;
 	
+	
+	public void startNotification()
+	{
+
+		mNotifyManager =(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		mBuilder = new NotificationCompat.Builder(this);
+		Intent notificationIntent = new Intent(this, HomeActivity.class);
+	    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+		mBuilder.setContentTitle("Portfolio")
+				.setContentText("Sync in Progress")
+				.setSmallIcon(R.drawable.ic_launcher);
+		mBuilder.setProgress(0, 0, true);
+		mBuilder.setContentIntent(contentIntent);
+		// Issues the notification
+		mNotifyManager.notify(0, mBuilder.build());
+	}
 	
 	public void onStartService()
 	{
@@ -275,6 +299,7 @@ public class UploadData extends Service {
 		try
 		{
 			removeStickyBroadcast(intent);
+			mNotifyManager.cancelAll();
 		}
 		catch (Exception e) {
 			// TODO: handle exception

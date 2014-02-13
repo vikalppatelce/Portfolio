@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -36,16 +38,20 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.provider.MediaStore.MediaColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -64,6 +70,10 @@ import demo.vicshady.portfolio.utils.Mail;
 public class HomeActivity extends SherlockFragmentActivity{
 
 	public static final int IMPORT_PICTURE = 1;
+	public static final int PIC = 117;
+	final int REQUEST_PORTFOLIO_CAMERA = 1002;
+	
+	Handler mHandler;
 	
 	Uri outputFileUri,currentFileUri;
 	Cursor dataCursor;
@@ -90,7 +100,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 		//setTheme(R.style.Sherlock___Theme_DarkActionBar);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		//EA 10001
-		setContentView(R.layout.home);
+		setContentView(R.layout.new_home);
 		img = (ImageView)findViewById(R.id.picviewer);
 		address = (EditText)findViewById(R.id.address);
 		name = (EditText)findViewById(R.id.name);
@@ -98,19 +108,33 @@ public class HomeActivity extends SherlockFragmentActivity{
 		submit = (Button)findViewById(R.id.next_button);
 		pref = PreferenceManager.getDefaultSharedPreferences(Portfolio.getApplication());		
 
-		address.addTextChangedListener(textWatcher);
-		contact.addTextChangedListener(textWatcher);
-		name.addTextChangedListener(textWatcher);
-		
+//		address.addTextChangedListener(textWatcher);
+//		contact.addTextChangedListener(textWatcher);
+//		name.addTextChangedListener(textWatcher);
+		mHandler = new Handler(Portfolio.getApplication().getMainLooper());
 		imagePaths =  new ArrayList<String>();
 	}
 
+	public void onAddPicture(View v)
+	{
+		showDialog(PIC);
+	}
+	
 	public void onImportPicture(View v)
 	{
 		Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		startActivityForResult(i, IMPORT_PICTURE);
 	}
 	
+	public void onClear(View v)
+	{
+		name.setText("");
+		address.setText("");
+		contact.setText("");
+		img.setImageDrawable(null);
+		img.setVisibility(View.GONE);
+		imagePaths.clear();
+	}
 	public void onSubmit(View v)
 	{
 		_name=name.getText().toString();
@@ -126,8 +150,10 @@ public class HomeActivity extends SherlockFragmentActivity{
 
 		if (isNetworkAvailable()) {
 			if (validateMail()) {
-				submit.setText("Sending...");
-				submit.setEnabled(false);
+						
+						// TODO Auto-generated method stub
+//						submit.setText("Sending...");
+//						submit.setEnabled(false);		
 				new MailTask().execute();
 			} else {
 				CustomToast.showToastMessage(getApplicationContext(),"Please Check Gmail Username, Password & Sent To");
@@ -174,8 +200,8 @@ public class HomeActivity extends SherlockFragmentActivity{
 		protected void onPostExecute(String result) {
 //			Toast.makeText(HomeActivity.this, "Mail Sent", Toast.LENGTH_SHORT).show();
 			CustomToast.showToastMessage(HomeActivity.this, "Mail Sent");
-			submit.setEnabled(true);
-			submit.setText("Submit");
+//			submit.setEnabled(true);
+//			submit.setText("Submit");
         }
 
         @Override
@@ -188,6 +214,54 @@ public class HomeActivity extends SherlockFragmentActivity{
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
 	}
+	
+	protected Dialog onCreateDialog(int id, Bundle b) {
+		// TODO Auto-generated method stub
+		switch (id) {
+		 case PIC:
+			 LayoutInflater inflater = LayoutInflater.from(this);
+			 View dialogview = inflater.inflate(R.layout.add_pic_dialog, null);
+			 AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
+			 dialogbuilder.setView(dialogview);
+			 return dialogbuilder.create();
+		}
+		return super.onCreateDialog(id);
+	}
+
+	
+	protected void onPrepareDialog(int id, Dialog dialog) {
+		switch (id) {
+		case PIC:
+			final AlertDialog alertDialog = (AlertDialog) dialog;
+			Button import_picture = (Button) alertDialog.findViewById(R.id.import_picture);
+			Button take_picture = (Button) alertDialog.findViewById(R.id.take_picture);
+			import_picture.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					onImportPicture(v);
+					alertDialog.dismiss();
+				}
+			});
+			take_picture.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					onTakePicture(v);
+					alertDialog.dismiss();
+				}
+			});
+			}
+	}
+	
+	public void onTakePicture(View v)
+	{
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		getImagePath();
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+		Intent cameraIntent = new Intent(getApplicationContext(),CameraActivity.class);
+	        cameraIntent.putExtra("FILE_URI", outputFileUri.toString());
+	        startActivityForResult(cameraIntent, REQUEST_PORTFOLIO_CAMERA);
+	}
+	
 	public void save(String name,String contact,String address)
 	{
 		Bundle b = new Bundle();
@@ -220,7 +294,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 				}
 			}
 		}
-
+		
 	}
 	
 	public boolean validateMail()
@@ -283,7 +357,7 @@ public class HomeActivity extends SherlockFragmentActivity{
 					name.getText().toString().length() > 0 &&
 					contact.getText().toString().length() > 0
 					)
-			submit.setBackgroundResource(R.drawable.finish_background);
+			submit.setBackgroundResource(R.drawable.button_large_green);
 		}
 		else
 			submit.setBackgroundResource(R.drawable.selectable_item_background);
@@ -370,6 +444,23 @@ public class HomeActivity extends SherlockFragmentActivity{
 				img.setImageBitmap(bm);
 			}
 		}
+		
+		if (requestCode == REQUEST_PORTFOLIO_CAMERA) {
+
+			if (resultCode == RESULT_OK) {
+				BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
+				btmapOptions.inSampleSize = 2;
+				bm = BitmapFactory.decodeFile(currentFileUri.getPath(),btmapOptions);
+				compressedPath = ImageCompression.compressImage(currentFileUri.getPath());
+				galleryAddPic();
+				imagePaths.add(compressedPath);
+				img.setImageBitmap(bm);
+			} else {
+				Toast.makeText(getApplicationContext(),"Error while taking picture!", Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
