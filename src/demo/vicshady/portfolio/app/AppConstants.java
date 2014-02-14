@@ -27,8 +27,11 @@ public class AppConstants {
 		/*
 		 * TESTING SERVER URL
 		 */
-		public static final String BASE_URL =  "http://www.netdoers.com/projects/smarthumanoid1/services/api.php";
-		public static final String MEDIA_BASE_URL =  "http://www.netdoers.com/projects/smarthumanoid1/services/file_upload.php";
+//		public static final String BASE_URL =  "http://www.netdoers.com/projects/smarthumanoid1/services/api.php";
+//		public static final String MEDIA_BASE_URL =  "http://www.netdoers.com/projects/smarthumanoid1/services/file_upload.php";
+		
+		public static final String BASE_URL =  "http://beta.manavit.com/adwallz/";
+		public static final String MEDIA_BASE_URL =  "http://beta.manavit.com/adwallz/";
 		
 		/*
 		 * PRODUCTION SERVER URL

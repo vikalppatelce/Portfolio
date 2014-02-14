@@ -25,7 +25,7 @@ import demo.vicshady.portfolio.dto.DataDetailsDTO;
 import demo.vicshady.portfolio.dto.MediaUploadResponse;
 import demo.vicshady.portfolio.dto.UploadDataResponseDTO;
 import demo.vicshady.portfolio.sql.DBConstant;
-import demo.vicshady.portfolio.ui.HomeActivity;
+import demo.vicshady.portfolio.ui.SendPhotoActivity;
 
 public class UploadData extends Service {
 
@@ -81,7 +81,7 @@ public class UploadData extends Service {
 
 		mNotifyManager =(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mBuilder = new NotificationCompat.Builder(this);
-		Intent notificationIntent = new Intent(this, HomeActivity.class);
+		Intent notificationIntent = new Intent(this, SendPhotoActivity.class);
 	    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 		mBuilder.setContentTitle("Portfolio")
 				.setContentText("Sync in Progress")

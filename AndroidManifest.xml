@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="demo.vicshady.portfolio"
-    android:versionCode="7"
+    android:versionCode="8"
     android:versionName="1.0" >
 
     <uses-sdk
@@ -43,10 +43,9 @@
             android:name="demo.vicshady.portfolio.ui.TestActivity">
 		</activity>
         
-        <activity android:name="demo.vicshady.portfolio.ui.HomeActivity"/>
+        <activity android:name="demo.vicshady.portfolio.ui.SendPhotoActivity"/>
         <activity android:name="demo.vicshady.portfolio.ui.PrefsActivity"/>
-        <activity android:name="demo.vicshady.portfolio.ui.CameraActivity"/>
-        <activity android:name="demo.vicshady.portfolio.ui.PicSaveActivity"/>
-    
+        <activity android:name="demo.vicshady.portfolio.ui.HomeActivity"/>
+       <activity android:name="demo.vicshady.portfolio.ui.AboutActivity"/>
     </application>
 </manifest>
