@@ -36,7 +36,9 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.ui.utils.AboutDialog;
@@ -44,7 +46,7 @@ import demo.vicshady.portfolio.ui.utils.ChangeLogDialog;
 
 public class PrefsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener 
 {
-	
+	ActionBar actionBar;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -52,9 +54,9 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 		PreferenceManager prefMgr = getPreferenceManager();
 		addPreferencesFromResource(R.xml.settings);
 		//SA 10002
-		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
-            initSummary(getPreferenceScreen().getPreference(i));
-        }//EA 10002
+//		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
+//            initSummary(getPreferenceScreen().getPreference(i));
+//        }//EA 10002
 		
 		Preference release = prefMgr.findPreference("prefRelease");
 		if(release!=null)
@@ -79,8 +81,7 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 				public boolean onPreferenceClick(Preference preference) {
 					// TODO Auto-generated method stub
 				//	showDialog(DEV);
-					copyDatabase(); AboutDialog aboutDialog = new AboutDialog(PrefsActivity.this);
-					aboutDialog.show();
+					copyDatabase(); 
 					return false;
 				}
 			});
@@ -102,7 +103,6 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 			});
 		}
 	}
-	
 	// SA 10001
 	@Override
 	protected void onResume() {
@@ -121,7 +121,7 @@ public class PrefsActivity extends SherlockPreferenceActivity implements OnShare
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
-		updatePrefSummary(findPreference(key));
+//		updatePrefSummary(findPreference(key));
 		updatePreference(key);
 	}
 	public void copyDatabase()

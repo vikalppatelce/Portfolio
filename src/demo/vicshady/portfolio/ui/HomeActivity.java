@@ -13,6 +13,7 @@ import demo.vicshady.portfolio.R;
 
 public class HomeActivity  extends SherlockFragmentActivity{
 
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -23,11 +24,13 @@ public class HomeActivity  extends SherlockFragmentActivity{
 	{
 		Intent i = new Intent(HomeActivity.this, SendPhotoActivity.class);
 		startActivity(i);
+		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 	}
 	public void onAbout(View v)
 	{
 		Intent i = new Intent(HomeActivity.this,AboutActivity.class);
 		startActivity(i);
+		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 	}
 	
 	@Override
