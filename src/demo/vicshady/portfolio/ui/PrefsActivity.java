@@ -38,8 +38,6 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
-
 import demo.vicshady.portfolio.R;
 import demo.vicshady.portfolio.ui.utils.AboutDialog;
 import demo.vicshady.portfolio.ui.utils.ChangeLogDialog;

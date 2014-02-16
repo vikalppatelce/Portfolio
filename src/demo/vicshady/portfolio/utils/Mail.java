@@ -119,7 +119,7 @@ private String _body;
  
       // setup message body 
       BodyPart messageBodyPart = new MimeBodyPart(); 
-      messageBodyPart.setText(_body); 
+      messageBodyPart.setContent(_body,"text/html"); 
       _multipart.addBodyPart(messageBodyPart); 
  
       // Put parts in message 

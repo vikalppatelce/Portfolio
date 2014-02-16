@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+     >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button 
+            android:id="@+id/play"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/bplay"
+            style="@style/PfButtonStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        
+        <Button 
+            android:id="@+id/about"
+            android:layout_above="@id/play"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/babout"
+            style="@style/PfButtonStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onAbout"
+            />
+        
+        <Button 
+            android:id="@+id/portfolio"
+            android:layout_above="@id/about"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bportfolio"
+            style="@style/PfButtonStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        
+        <Button 
+            android:id="@+id/sendphotograph"
+            android:layout_above="@id/portfolio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bsendphoto"
+            style="@style/PfButtonStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onSendPhoto"
+            />
+        
+        
+            </RelativeLayout>
+
+</LinearLayout>

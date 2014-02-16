@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/PfEditTextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:nextFocusDown="@+id/contact_no"
+                android:hint="Enter Name"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+
+            <EditText
+                android:id="@id/contact_no"
+                style="@style/PfEditTextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Contact Number"
+                android:nextFocusDown="@+id/address"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+
+            <EditText
+                android:id="@id/address"
+                style="@style/PfEditTextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Address"
+                android:minLines="3"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/PfButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:drawableLeft="@android:drawable/ic_menu_gallery"
+            android:gravity="center"
+            android:text="@string/bsendpictures"
+            android:onClick="onSubmit"
+             />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/add_picture"
+                style="@style/PfButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:onClick="onAddPicture"
+                android:text="@string/add_media" />
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/picviewer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:background="#AA000000"
+                    android:text="Delete"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:onClick="onDelete"
+                    android:drawableLeft="@android:drawable/ic_menu_delete"
+                    android:textColor="#ffffffff" />
+            </FrameLayout>
+            
+                    </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
