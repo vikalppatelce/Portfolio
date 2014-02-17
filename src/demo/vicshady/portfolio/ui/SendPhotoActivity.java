@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -92,8 +93,10 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 	EditText address,name,contact;
 	ImageView img;
 	TextView delete;
-	Button submit;
+	Button submit,addpicture;
 	FrameLayout fm;//TESTDRIOD
+	
+	Typeface fontstyle;
 	
 	SharedPreferences pref;
 	
@@ -106,11 +109,15 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 		super.onCreate(savedInstanceState);
 		//SA 10001
 		//setTheme(R.style.Sherlock___Theme_DarkActionBar);
+		fontstyle  = Typeface.createFromAsset(getAssets(), AppConstants.fontStyle);
 		actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle("Send Photograph");
+		
+		fontActionBar(actionBar.getTitle().toString());
 		actionBar.setIcon(android.R.drawable.ic_menu_gallery);
+		
 		//EA 10001
 //		setContentView(R.layout.new_home);
 		setContentView(R.layout.send_photograph);
@@ -120,7 +127,16 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 		contact  = (EditText)findViewById(R.id.contact_no);
 		fm = (FrameLayout)findViewById(R.id.frame);//TESTDROID
 		delete = (TextView)findViewById(R.id.delete);//TESTDRIOD
-		pref = PreferenceManager.getDefaultSharedPreferences(Portfolio.getApplication());		
+		addpicture = (Button)findViewById(R.id.add_picture);
+		submit= (Button)findViewById(R.id.submit);
+		pref = PreferenceManager.getDefaultSharedPreferences(Portfolio.getApplication());
+		
+		address.setTypeface(fontstyle);
+		name.setTypeface(fontstyle);
+		contact.setTypeface(fontstyle);
+		delete.setTypeface(fontstyle);
+		addpicture.setTypeface(fontstyle);
+		submit.setTypeface(fontstyle);
 
 //		address.addTextChangedListener(textWatcher);
 //		contact.addTextChangedListener(textWatcher);
@@ -129,6 +145,18 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 		imagePaths =  new ArrayList<String>();
 	}
 
+	public void fontActionBar(String str)
+	{
+		try {
+			int titleId = getResources().getIdentifier("action_bar_title",
+					"id", "android");
+			TextView yourTextView = (TextView) findViewById(titleId);
+			yourTextView.setText(str);
+			yourTextView.setTypeface(fontstyle);
+		} catch (Exception e) {
+			Log.e("ActionBar Style", e.toString());
+		}
+	}
 	public void onAddPicture(View v)
 	{
 		showDialog(PIC);

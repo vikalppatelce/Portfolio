@@ -398,11 +398,11 @@ int id bottom 0x7f060013
 int id bottombar 0x7f060045
 int id buttonbottombar 0x7f060047
 int id contact_no 0x7f060041
-int id delete 0x7f06004a
+int id delete 0x7f060049
 int id disableHome 0x7f060009
 int id divider 0x7f060046
 int id edit_query 0x7f06002c
-int id frame 0x7f060049
+int id frame 0x7f060048
 int id homeAsUp 0x7f060006
 int id import_picture 0x7f060038
 int id indicator 0x7f06004c
@@ -421,7 +421,7 @@ int id sendphotograph 0x7f06003f
 int id showCustom 0x7f060008
 int id showHome 0x7f060005
 int id showTitle 0x7f060007
-int id submit 0x7f060048
+int id submit 0x7f06004a
 int id tabMode 0x7f060003
 int id take_picture 0x7f060039
 int id text 0x7f06003b
