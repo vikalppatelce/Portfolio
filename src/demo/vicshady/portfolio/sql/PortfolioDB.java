@@ -44,10 +44,10 @@ public class PortfolioDB extends ContentProvider {
 			strBuilder.append(DBConstant.TABLE_DATA);
 			strBuilder.append('(');
 			strBuilder.append(DBConstant.Data_Columns.COLUMN_ID +" INTEGER(20) PRIMARY KEY NOT NULL DEFAULT (STRFTIME('%s',CURRENT_TIMESTAMP))," );//EU10001
-			strBuilder.append(DBConstant.Data_Columns.COLUMN_NAME +" TEXT UNIQUE, " );
-			strBuilder.append(DBConstant.Data_Columns.COLUMN_CONTACT +" TEXT UNIQUE, " );
-			strBuilder.append(DBConstant.Data_Columns.COLUMN_ADDRESS +" TEXT UNIQUE, " );
-			strBuilder.append(DBConstant.Data_Columns.COLUMN_ATTACHMENT +" TEXT UNIQUE, " );
+			strBuilder.append(DBConstant.Data_Columns.COLUMN_NAME +" TEXT , " );
+			strBuilder.append(DBConstant.Data_Columns.COLUMN_CONTACT +" TEXT , " );
+			strBuilder.append(DBConstant.Data_Columns.COLUMN_ADDRESS +" TEXT , " );
+			strBuilder.append(DBConstant.Data_Columns.COLUMN_ATTACHMENT +" TEXT , " );
 			strBuilder.append(DBConstant.Data_Columns.COLUMN_SYNC_STATUS +" NUMBER" );
 			strBuilder.append(')');
 			db.execSQL(strBuilder.toString());
@@ -58,9 +58,9 @@ public class PortfolioDB extends ContentProvider {
 			strBuilder.append(DBConstant.TABLE_DATA_DETAILS);
 			strBuilder.append('(');
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_ID +" INTEGER(20) PRIMARY KEY NOT NULL DEFAULT (STRFTIME('%s',CURRENT_TIMESTAMP))," );
-			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_NAME+" TEXT UNIQUE, " );
-			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_DATA_ID+" TEXT UNIQUE, " );
-			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_URL +" TEXT UNIQUE, " );
+			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_NAME+" TEXT , " );
+			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_DATA_ID+" TEXT , " );
+			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_URL +" TEXT , " );
 			strBuilder.append(DBConstant.Data_Details_Columns.COLUMN_SYNC_STATUS +" NUMBER" );
 			strBuilder.append(')');
 			db.execSQL(strBuilder.toString());

@@ -11,4 +11,6 @@
     <color name="red">#FF0000</color>
     <color name="darkred">#A50A0A</color>
     <color name="grey">#808080</color>
+        <color name="grid_state_pressed">#BB7dbcd3</color>
+    <color name="grid_state_focused">#777dbcd3</color>
 </resources>

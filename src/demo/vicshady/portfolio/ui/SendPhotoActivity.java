@@ -170,7 +170,7 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 	
 	public void onDelete(View v)
 	{
-		CustomToast.showToastMessage(getApplicationContext(), "Deleted!");
+		CustomToast.showToastMessage(getApplicationContext(), "Add new picture");
 		img.setImageDrawable(null);
 		fm.setVisibility(View.GONE);
 		imagePaths.clear();
@@ -311,6 +311,8 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 			final AlertDialog alertDialog = (AlertDialog) dialog;
 			Button import_picture = (Button) alertDialog.findViewById(R.id.import_picture);
 			Button take_picture = (Button) alertDialog.findViewById(R.id.take_picture);
+			import_picture.setTypeface(fontstyle);
+			take_picture.setTypeface(fontstyle);
 			import_picture.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

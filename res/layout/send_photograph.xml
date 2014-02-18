@@ -52,7 +52,6 @@
                 android:layout_marginTop="20dp"
                 android:hint="Enter Address"
                 android:minLines="3"
-                android:inputType="textPostalAddress"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp" />
 

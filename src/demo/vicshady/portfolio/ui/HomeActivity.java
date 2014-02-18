@@ -66,6 +66,13 @@ public class HomeActivity  extends SherlockFragmentActivity{
 		startActivity(i);
 		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 	}
+	public void onPortfolio(View v)
+	{
+		Intent i = new Intent(HomeActivity.this,PortfolioActivity.class);
+//		Intent i = new Intent(HomeActivity.this,ImageDetailActivity.class);
+		startActivity(i);
+		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

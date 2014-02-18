@@ -28,9 +28,14 @@
         <activity
             android:name="demo.vicshady.portfolio.ui.WalkThroughActivity"
             android:label="@string/app_name" >
-            
         </activity>
         
+        <activity 
+            android:name="demo.vicshady.portfolio.ui.PortfolioActivity"
+            />
+        <activity 
+            android:name="imageUtils.ImageDetailActivity"
+            />
         <activity
             android:name="demo.vicshady.portfolio.ui.SendPhotoActivity"
             android:windowSoftInputMode="stateHidden" />
