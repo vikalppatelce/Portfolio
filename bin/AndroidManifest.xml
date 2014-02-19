@@ -36,6 +36,7 @@
         <activity 
             android:name="imageUtils.ImageDetailActivity"
             />
+        <activity android:name="imageUtils.ImageZoomActivity"/>
         <activity
             android:name="demo.vicshady.portfolio.ui.SendPhotoActivity"
             android:windowSoftInputMode="stateHidden" />
