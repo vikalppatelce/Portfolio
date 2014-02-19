@@ -10,7 +10,11 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -86,7 +90,7 @@ public class AboutActivity  extends SherlockFragmentActivity{
             // Showing progress dialog
             pDialog = new ProgressDialog(context);
             pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
         }
  
@@ -128,7 +132,8 @@ public class AboutActivity  extends SherlockFragmentActivity{
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            about.setText(aboutText);
+            Spanned res = Html.fromHtml(aboutText);
+            about.setText(res);
             /**
              * Updating parsed JSON data into ListView
              * */

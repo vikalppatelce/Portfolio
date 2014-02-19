@@ -249,7 +249,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
             // setting a placeholder image while the background thread runs
             
             mImageFetcher.loadImage(Images.imageThumbUrls[position - mNumColumns], imageView);
-            final String imgURL = Images.imageThumbUrls[position - mNumColumns];
+            final String imgURL = Images.imageUrls[position - mNumColumns];
             imageView.setOnClickListener(new View.OnClickListener() {
 				
 				@Override

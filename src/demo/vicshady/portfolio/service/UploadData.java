@@ -47,7 +47,7 @@ public class UploadData extends Service {
 		super.onCreate();
 		intent = new Intent(BROADCAST_ACTION);	
 		onStartService();
-		startNotification();
+//		startNotification();
 	}
 
 	@Override

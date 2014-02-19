@@ -21,7 +21,6 @@ public class HomeActivity  extends SherlockFragmentActivity{
 	Button btnsend,btnabout,btnportfolio,btnplay;
 	
 	Typeface stylefont;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -41,6 +40,7 @@ public class HomeActivity  extends SherlockFragmentActivity{
 		btnabout.setTypeface(stylefont);
 		btnportfolio.setTypeface(stylefont);
 		btnplay.setTypeface(stylefont);
+		
 	}
 
 	public void fontActionBar(String str)

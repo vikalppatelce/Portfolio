@@ -17,6 +17,7 @@ public class ImageZoomActivity extends SherlockFragmentActivity {
 	Typeface fontStyle;
 	ActionBar actionBar;
 	ImageView image;
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
