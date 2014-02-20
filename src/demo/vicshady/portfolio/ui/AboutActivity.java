@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
