@@ -10,11 +10,14 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -36,7 +39,15 @@ public class PortfolioActivity extends SherlockFragmentActivity{
 	{
 		super.onCreate(savedInstanceState);
 		
-		new CachingImageURL(this).execute();
+		if(isNetworkAvailable())
+		{
+			new CachingImageURL(this).execute();	
+		}
+		else
+		{
+			Toast.makeText(PortfolioActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+		}
+		
 		
 		fontStyle  = Typeface.createFromAsset(getAssets(), AppConstants.fontStyle);
 		actionBar = getSupportActionBar();
@@ -60,6 +71,12 @@ public class PortfolioActivity extends SherlockFragmentActivity{
 		}
 	}
 	
+    	private boolean isNetworkAvailable() {
+    	    ConnectivityManager connectivityManager 
+    	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+    	    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    	}
 	@Override
 	public void onBackPressed()
 	{

@@ -33,6 +33,9 @@ public class AppConstants {
 		public static final String BASE_URL =  "http://beta.manavit.com/adwallz/";
 		public static final String ABOUT_URL =  "http://arpitdesai.in/mystudio/GetAboutUs.php";
 		public static final String PORTFOLIO_URL =  "http://arpitdesai.in/mystudio/GetPortfolio.php";
+		public static final String MAIL_URL =  "http://arpitdesai.in/mystudio/GetMailConfig.php";
+		public static final String CALL_URL =  "http://arpitdesai.in/mystudio/GetClickToCall.php";
+		
 		
 		/*
 		 * PRODUCTION SERVER URL

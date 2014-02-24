@@ -2,13 +2,15 @@ package demo.vicshady.portfolio.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import demo.vicshady.portfolio.R;
 
 public class SplashScreen extends Activity
 {
-  private final int SPLASH_DISPLAY_LENGTH = 1000;
+  private final int SPLASH_DISPLAY_LENGTH = 2500;
   @Override
   public void onCreate(Bundle savedInstanceState)
   {
@@ -36,4 +38,9 @@ public class SplashScreen extends Activity
     }
     .start();
   }
+  public void onFooter(View v)
+	{
+		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.krishnatechno.co.in/"));
+		startActivity(browserIntent);
+	}
 }

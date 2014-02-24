@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="borderLow">#585858</color>
     <color name="borderHigh">#000000</color>
-    
     <color name="gradientStart">#000000</color>
     <color name="gradientEnd">#585858</color>
     <color name="white">#FFFFFF</color>
-    <color name="lightpink">#FF9696</color>
+    <color name="lightpink">#F5908E</color>
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
     <color name="darkred">#A50A0A</color>
     <color name="grey">#808080</color>
-        <color name="grid_state_pressed">#BB7dbcd3</color>
+    <color name="grid_state_pressed">#BB7dbcd3</color>
     <color name="grid_state_focused">#777dbcd3</color>
+
 </resources>

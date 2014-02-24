@@ -13,14 +13,16 @@
         android:scaleType="centerInside"
         android:src="@drawable/splash_logo"
         />
-    <ProgressBar
-        android:layout_below="@id/splash"
-        android:id="@+id/progress" 
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleLarge"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        />
+        android:background="#000"
+        android:gravity="right"
+        android:padding="5dp"
+        android:text="Developed by: Krishna Techno"
+        android:textColor="#FFFFFF"
+        android:clickable="true"
+            android:onClick="onFooter"
+        android:textSize="10sp" />
 </RelativeLayout>

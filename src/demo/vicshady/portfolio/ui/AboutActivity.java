@@ -7,13 +7,19 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -48,15 +54,27 @@ public class AboutActivity  extends SherlockFragmentActivity{
 		fontActionBar(actionBar.getTitle().toString());
 		
 		actionBar.setIcon(android.R.drawable.ic_menu_info_details);
-		
-		 new GetAbout(this).execute();
-		
+
+		if(isNetworkAvailable())
+		{
+			new GetAbout(this).execute();	
+		}
+		else
+		{
+			Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+		}
 		about = (TextView)findViewById(R.id.about_text);
 		
 		about.setTypeface(stylefont);
 		
 	}
 	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+	}
 	public void fontActionBar(String str)
 	{
 		try {
@@ -67,6 +85,12 @@ public class AboutActivity  extends SherlockFragmentActivity{
 		} catch (Exception e) {
 			Log.e("ActionBar Style", e.toString());
 		}
+	}
+	
+	public void onFooter(View v)
+	{
+		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.krishnatechno.co.in/"));
+		startActivity(browserIntent);
 	}
 	
 	
@@ -159,5 +183,4 @@ public class AboutActivity  extends SherlockFragmentActivity{
             return super.onOptionsItemSelected(item);
         }
     }
-
 }

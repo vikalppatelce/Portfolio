@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="demo.vicshady.portfolio"
-    android:versionCode="10"
+    android:versionCode="11"
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="8" />
-    
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name="demo.vicshady.portfolio.app.Portfolio"
@@ -36,31 +37,48 @@
 
         <activity
             android:name="demo.vicshady.portfolio.ui.WalkThroughActivity"
-            android:screenOrientation="portrait" 
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="demo.vicshady.portfolio.ui.PortfolioActivity"
-            android:screenOrientation="portrait"  />
-        <activity android:name="imageUtils.ImageDetailActivity"
-            android:screenOrientation="portrait"  />
-        <activity android:name="imageUtils.ImageZoomActivity"
-            android:screenOrientation="portrait"  />
+        <activity
+            android:name="demo.vicshady.portfolio.ui.PlayWithMeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="demo.vicshady.portfolio.ui.PortfolioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="imageUtils.ImageDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="imageUtils.ImageZoomActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="demo.vicshady.portfolio.ui.SendPhotoActivity"
-            android:screenOrientation="portrait" 
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="demo.vicshady.portfolio.ui.PrefsActivity"
-            android:screenOrientation="portrait"  />
-        <activity android:name="demo.vicshady.portfolio.ui.HomeActivity"
-            android:screenOrientation="portrait"  >
+        <activity
+            android:name="demo.vicshady.portfolio.ui.PrefsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="demo.vicshady.portfolio.ui.PlaceOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+             />
+        <activity
+            android:name="demo.vicshady.portfolio.ui.HomeActivity"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="demo.vicshady.portfolio.ui.SplashScreen"
-            android:screenOrientation="portrait"  >
+        <activity
+            android:name="demo.vicshady.portfolio.ui.SplashScreen"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="demo.vicshady.portfolio.ui.AboutActivity" />
     </application>
+
 </manifest>

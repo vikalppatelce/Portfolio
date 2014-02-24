@@ -56,6 +56,31 @@ public class Preferences {
 		editor.commit();
 	}
 	
+	public void setUser(String user)
+	{
+		editor = sharedPreferences.edit();
+		editor.putString("username", user);
+		editor.commit();
+	}
+	
+	public String getUser()
+	{
+		String bool = sharedPreferences.getString("username", null);
+		return bool;
+	}
+	public void setPassword(String password)
+	{
+		editor = sharedPreferences.edit();
+		editor.putString("password", password);
+		editor.commit();
+	}
+	
+	public String getPassword()
+	{
+		String bool = sharedPreferences.getString("password", null);
+		return bool;
+	}
+	
 	public void setIsLOVInserted(boolean bool)
 	{
 		editor = sharedPreferences.edit();

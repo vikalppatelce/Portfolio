@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background"
-     >
-    
-    <RelativeLayout 
+    android:background="@drawable/background" >
+
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        >
-        <Button 
+        android:layout_height="wrap_content" >
+
+        <Button
             android:id="@+id/play"
+            style="@style/PfButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/bplay"
-            style="@style/PfButtonStyle"
+            android:layout_marginBottom="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            />
-        
-        <Button 
-            android:id="@+id/about"
-            android:layout_above="@id/play"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/babout"
-            style="@style/PfButtonStyle"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onAbout"
-            />
-        
-        <Button 
-            android:id="@+id/portfolio"
-            android:layout_above="@id/about"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bportfolio"
-            style="@style/PfButtonStyle"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onPortfolio"
-            />
-        
-        <Button 
-            android:id="@+id/sendphotograph"
-            android:layout_above="@id/portfolio"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bsendphoto"
-            style="@style/PfButtonStyle"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onSendPhoto"
-            />
-        
-        <ImageView
-            android:layout_above="@id/sendphotograph" 
-            android:layout_marginBottom="20dp"
-        android:layout_width="fill_parent"
-        android:layout_height="120dp"
-        android:src="@drawable/studio"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        />
-        
-        
-            </RelativeLayout>
+            android:onClick="onPlay"
+            android:text="@string/bplay" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/about"
+            style="@style/PfButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/play"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="onAbout"
+            android:text="@string/babout" />
+
+        <Button
+            android:id="@+id/portfolio"
+            style="@style/PfButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/about"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="onPortfolio"
+            android:text="@string/bportfolio" />
+        
+        <Button
+            android:id="@+id/order"
+            style="@style/PfButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/portfolio"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="onPlaceOrder"
+            android:text="Place Order" />
+
+        <Button
+            android:id="@+id/sendphotograph"
+            style="@style/PfButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/order"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="onSendPhoto"
+            android:text="@string/bsendphoto" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_above="@id/sendphotograph"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/studio" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#000"
+        android:gravity="right"
+        android:padding="5dp"
+        android:text="Developed by: Krishna Techno"
+        android:textColor="#FFFFFF"
+        android:clickable="true"
+            android:onClick="onFooter"
+        android:textSize="10sp" />
+
+</RelativeLayout>
