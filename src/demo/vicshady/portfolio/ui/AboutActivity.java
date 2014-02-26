@@ -38,6 +38,7 @@ public class AboutActivity  extends SherlockFragmentActivity{
 	
 	String aboutText;
 	JSONArray aboutus;
+	TextView developed;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -64,7 +65,8 @@ public class AboutActivity  extends SherlockFragmentActivity{
 			Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
 		}
 		about = (TextView)findViewById(R.id.about_text);
-		
+		developed = (TextView)findViewById(R.id.developed);
+		developed.setTypeface(stylefont);
 		about.setTypeface(stylefont);
 		
 	}

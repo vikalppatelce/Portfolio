@@ -124,6 +124,7 @@
             android:textColor="#FFFFFF"
             android:clickable="true"
             android:onClick="onFooter"
+        android:textStyle="italic"
             android:textSize="10sp" />
 
         <Button

@@ -19,6 +19,8 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/developed"
+        android:textStyle="italic"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -28,7 +30,7 @@
         android:text="Developed by: Krishna Techno"
         android:textColor="#FFFFFF"
         android:clickable="true"
-            android:onClick="onFooter"
+        android:onClick="onFooter"
         android:textSize="10sp" />
 
 </RelativeLayout>

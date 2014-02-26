@@ -29,6 +29,7 @@ import demo.vicshady.portfolio.service.ServiceHandler;
 public class HomeActivity  extends SherlockFragmentActivity{
 
 	Button btnsend,btnabout,btnportfolio,btnplay,btnplace;
+	TextView developed;
 	JSONArray aboutus;
 	
 	Typeface stylefont;
@@ -47,6 +48,8 @@ public class HomeActivity  extends SherlockFragmentActivity{
 		btnportfolio = (Button)findViewById(R.id.portfolio);
 		btnplay = (Button) findViewById(R.id.play);
 		btnplace = (Button)findViewById(R.id.order);
+		developed = (TextView)findViewById(R.id.developed);
+		developed.setTypeface(stylefont);
 		
 		btnsend.setTypeface(stylefont);
 		btnabout.setTypeface(stylefont);

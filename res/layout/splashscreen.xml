@@ -24,5 +24,7 @@
         android:textColor="#FFFFFF"
         android:clickable="true"
             android:onClick="onFooter"
+            android:id="@+id/developed"
+        android:textStyle="italic"
         android:textSize="10sp" />
 </RelativeLayout>

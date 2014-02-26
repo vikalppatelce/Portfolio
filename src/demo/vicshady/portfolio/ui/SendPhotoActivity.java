@@ -89,6 +89,7 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 	ArrayList<String> imagePaths;
 	
 	EditText address,name,contact;
+	TextView developed;
 	ImageView img;
 	TextView delete;
 	Button submit,addpicture;
@@ -127,6 +128,8 @@ public class SendPhotoActivity extends SherlockFragmentActivity{
 		delete = (TextView)findViewById(R.id.delete);//TESTDRIOD
 		addpicture = (Button)findViewById(R.id.add_picture);
 		submit= (Button)findViewById(R.id.submit);
+		developed = (TextView)findViewById(R.id.footer);
+		developed.setTypeface(fontstyle);
 		pref = PreferenceManager.getDefaultSharedPreferences(Portfolio.getApplication());
 		
 		address.setTypeface(fontstyle);
