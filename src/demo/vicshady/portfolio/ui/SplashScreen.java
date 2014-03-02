@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 import demo.vicshady.portfolio.app.AppConstants;
 
 public class SplashScreen extends Activity

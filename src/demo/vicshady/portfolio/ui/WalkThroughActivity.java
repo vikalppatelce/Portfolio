@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 import demo.vicshady.portfolio.app.Portfolio;
 import demo.vicshady.portfolio.ui.utils.BaseSampleActivity;
 import demo.vicshady.portfolio.ui.utils.TestFragmentAdapter;

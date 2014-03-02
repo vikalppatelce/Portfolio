@@ -33,8 +33,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import demo.vicshady.portfolio.BuildConfig;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.BuildConfig;
+import demo.vicshady.rajvidesigning.R;
 import demo.vicshady.portfolio.app.Portfolio;
 
 /**

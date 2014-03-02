@@ -3,7 +3,7 @@ package demo.vicshady.portfolio.ui.utils;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 
 public class TestFragmentAdapter extends FragmentPagerAdapter  {
     protected static final int[] CONTENT = new int[] { 

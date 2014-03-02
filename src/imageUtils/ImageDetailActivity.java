@@ -26,8 +26,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
-import demo.vicshady.portfolio.BuildConfig;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.BuildConfig;
+import demo.vicshady.rajvidesigning.R;
 
 public class ImageDetailActivity extends FragmentActivity implements OnClickListener {
     private static final String IMAGE_CACHE_DIR = "images";

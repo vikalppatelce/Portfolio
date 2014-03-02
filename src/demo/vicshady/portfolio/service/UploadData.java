@@ -18,7 +18,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 import demo.vicshady.portfolio.app.AppConstants;
 import demo.vicshady.portfolio.dto.DataDTO;
 import demo.vicshady.portfolio.dto.DataDetailsDTO;

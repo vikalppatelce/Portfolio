@@ -19,7 +19,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
  
 public class ImageLoader {
  

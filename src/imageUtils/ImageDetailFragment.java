@@ -22,7 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 
 /**
  * This fragment will populate the children of the ViewPager from {@link ImageDetailActivity}.

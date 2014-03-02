@@ -19,7 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import demo.vicshady.portfolio.R;
+import demo.vicshady.rajvidesigning.R;
 
 public class CustomToast {
 
